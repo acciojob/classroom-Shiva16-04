@@ -14,12 +14,18 @@ public class combinedService {
 
     //Method 1: add Student
     public String addStudent(Student student){
+        HashMap<String, Student>studentsDb=repoObj.getStudentsDatabase();
+        if(studentsDb.containsKey(student.getName())==false)
         return repoObj.addStudent(student);
+        else return "";
     }
 
     //Method 2: add Teacher
     public String addTeacher(Teacher teacher){
+        HashMap<String, Teacher>teachersDb=repoObj.getTeachersDatabase();
+        if(teachersDb.containsKey(teacher.getName())==false)
         return repoObj.addTeacher(teacher);
+        else return "";
     }
 
     //Method 3: add Student teacher pair
@@ -79,7 +85,7 @@ public class combinedService {
         HashMap<String, List<Student>>pairDb=repoObj.getPairDatabase();
         if(teacherDb==null || teacherDb.size()==0 ||teacherDb.containsKey(teacher)==false)return " teacher not found";
         teacherDb.remove(teacher);
-        if(pairDb.containsKey(teacher)==true)pairDb.remove(teacher);
+        pairDb.remove(teacher);
         return " removed successfully";
     }
 
