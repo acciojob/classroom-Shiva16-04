@@ -76,5 +76,7 @@ public class StudentController {
         String res=serviceObj.deleteAllTeachers();
         return new ResponseEntity<>(res, HttpStatus.CREATED);
 
+
+
     }
 }
