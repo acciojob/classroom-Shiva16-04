@@ -60,6 +60,7 @@ public class combinedRepository {
             return "New teacher added successfully";
         }else{
             return "New teacher not added successfully";
+
         }
     }
 
