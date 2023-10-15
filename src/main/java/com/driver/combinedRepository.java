@@ -56,6 +56,7 @@ public class combinedRepository {
     public String addTeacher(Teacher teacher){
 //        if(getTeachersDatabase().containsKey(teacher.getName())==false) {
             getTeachersDatabase().put(teacher.getName(), teacher);
+            getPairDatabase().put(teacher.getName(),new ArrayList<>());
             return "New teacher added successfully";
 //        }else{
 //            return "New teacher not added successfully";
@@ -66,9 +67,7 @@ public class combinedRepository {
     //Method 3: add Student and teacher
     public String addStudentTeacherPair(String student, String teacher){
 //        if(getTeachersDatabase().containsKey(teacher)==true && getStudentsDatabase().containsKey(student)==true){
-            List<Student>students= getPairDatabase().getOrDefault(teacher,new ArrayList<>());
-            students.add(getStudentsDatabase().get(student));
-            getPairDatabase().put(teacher,students);
+            getPairDatabase().get(teacher).add(getStudentsDatabase().get(student));
             return "New student-teacher pair added successfully";
 //        }
 //        else{

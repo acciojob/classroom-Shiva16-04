@@ -69,11 +69,11 @@ public class combinedService {
     public List<String> getAllStudents(){
         HashMap<String, Student>studentDb=repoObj.getStudentsDatabase();
 //        if(studentDb!=null){
-            List<String>studentsNames=new ArrayList<>();
-            for(String name:studentDb.keySet()){
-                studentsNames.add(name);
-            }
-            return studentsNames;
+//            List<String>studentsNames=new ArrayList<>();
+//            for(String name:studentDb.keySet()){
+//                studentsNames.add(name);
+//            }
+            return new ArrayList<>(studentDb.keySet());
 //        }else {
 //            return new ArrayList<>();
 //        }
