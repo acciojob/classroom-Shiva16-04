@@ -83,8 +83,13 @@ public class combinedService {
     public String deleteTeacherByName(String teacher){
         HashMap<String,Teacher>teacherDb=repoObj.getTeachersDatabase();
         HashMap<String, List<Student>>pairDb=repoObj.getPairDatabase();
+        HashMap<String,Student>studentDb=repoObj.getStudentsDatabase();
         if(teacherDb==null || teacherDb.size()==0 ||teacherDb.containsKey(teacher)==false)return " teacher not found";
         teacherDb.remove(teacher);
+        List<Student>students=pairDb.getOrDefault(teacher,new ArrayList<>());
+        for(Student student:students){
+            studentDb.remove(student.getName());
+        }
         pairDb.remove(teacher);
         return " removed successfully";
     }
@@ -95,6 +100,9 @@ public class combinedService {
         HashMap<String, List<Student>>pairDb=repoObj.getPairDatabase();
         if(teacherDb==null ||teacherDb.size()==0)return " teachers not found";
         teacherDb.clear();
+        for(String teacher: pairDb.keySet()){
+            deleteTeacherByName(teacher);
+        }
         pairDb.clear();
         return "All teachers deleted successfully";
     }
